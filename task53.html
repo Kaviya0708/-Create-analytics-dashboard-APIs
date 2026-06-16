@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard</title>
+</head>
+<body>
+
+<h1>Analytics Dashboard</h1>
+
+<h3>Total Users: <span id="users">0</span></h3>
+<h3>Total Orders: <span id="orders">0</span></h3>
+<h3>Revenue: ₹<span id="revenue">0</span></h3>
+<h3>Today's Visitors: <span id="visitors">0</span></h3>
+
+<button onclick="loadAnalytics()">
+    Load Analytics
+</button>
+
+<script>
+async function loadAnalytics() {
+
+    const response =
+        await fetch(
+            "http://localhost:3000/api/analytics"
+        );
+
+    const data = await response.json();
+
+    document.getElementById("users").innerHTML =
+        data.totalUsers;
+
+    document.getElementById("orders").innerHTML =
+        data.totalOrders;
+
+    document.getElementById("revenue").innerHTML =
+        data.revenue;
+
+    document.getElementById("visitors").innerHTML =
+        data.todayVisitors;
+}
+</script>
+
+</body>
+</html>
